@@ -42,6 +42,8 @@ confsetup () {
 }
 
 cd ~
+git config --global user.email "lagane.thomas@gmail.com"
+git config --global user.name "3cl1ps"
 nanomsg
 confsetup
 buildbtc
