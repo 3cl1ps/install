@@ -38,3 +38,5 @@ berkeleydb
 buildgin
 sudo ln -sf /home/eclips/gincoin/src/gincoin-cli /usr/local/bin/gincoin-cli
 sudo ln -sf /home/eclips/gincoin/src/gincoind /usr/local/bin/gincoind
+
+gincoind &
