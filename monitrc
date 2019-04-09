@@ -75,7 +75,6 @@ CHECK PROCESS COQUI MATCHING "-ac_name=COQUI"
 CHECK PROCESS WLC MATCHING "-ac_name=WLC"
   if not exist then alert
 CHECK PROCESS KV MATCHING "-ac_name=KV"
- if not exist for 3 cycles then restart
   if not exist then alert
 CHECK PROCESS CEAL MATCHING "-ac_name=CEAL"
   if not exist then alert
