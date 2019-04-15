@@ -6,6 +6,9 @@ cp ../SuperNET/iguana/pubkey.txt src/
 cd ../hush
 git pull
 make -j8
+cd ../hush3
+git pull
+make -j8
 cd ../chips3
 git pull
 make -j8
