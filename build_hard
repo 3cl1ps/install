@@ -3,9 +3,6 @@ git pull
 git clean -fdx
 cp ../SuperNET/iguana/pubkey.txt src/
 ./zcutil/build.sh
-cd ../hush
-git pull
-make -j8
 cd ../hush3
 git pull
 make -j8
