@@ -28,8 +28,6 @@ set httpd port 2812 and use address localhost allow localhost
 ###############################################################################
 
 check system $HOST
-  if loadavg (1min) > 8 then alert
-  if loadavg (5min) > 4 then alert
   if cpu usage > 95% for 10 cycles then alert
   if memory usage > 75% then alert
   if swap usage > 25% then alert
@@ -38,7 +36,7 @@ CHECK PROCESS komodod MATCHING "komodod -gen -genproclimit=1"
   if not exist then alert
 CHECK PROCESS VRSC MATCHING "-ac_name=VRSC"
   if not exist then alert
-CHECK PROCESS hushd MATCHING "hushd"
+CHECK PROCESS hushd MATCHING "HUSH3"
   if not exist then alert
 CHECK PROCESS einsteiniumd MATCHING "einsteiniumd"
   if not exist then alert
@@ -90,7 +88,6 @@ CHECK PROCESS BTCH MATCHING "-ac_name=BTCH"
   if not exist then alert
 CHECK PROCESS PIZZA MATCHING "-ac_name=PIZZA"
   if not exist then alert
-  if 3 restarts within 3 cycles then timeout
 CHECK PROCESS BEER MATCHING "-ac_name=BEER"
   if not exist then alert
 CHECK PROCESS NINJA MATCHING "-ac_name=NINJA"
@@ -111,7 +108,6 @@ CHECK PROCESS EQL MATCHING "-ac_name=EQL"
   if not exist then alert
 CHECK PROCESS ZILLA MATCHING "-ac_name=ZILLA"
   if not exist then alert
-  if 3 restarts within 3 cycles then timeout
 CHECK PROCESS RFOX MATCHING "-ac_name=RFOX"
   if not exist then alert
 CHECK PROCESS SEC MATCHING "-ac_name=SEC"
@@ -136,6 +132,10 @@ CHECK PROCESS ILN MATCHING "-ac_name=ILN"
   if not exist then alert
 CHECK PROCESS iguana MATCHING "iguana notary_nosplit"
  if not exist then alert
+ CHECK PROCESS VOTE MATCHING "-ac_name=VOTE2019"
+  if not exist then alert
+CHECK PROCESS KOIN MATCHING "-ac_name=KOIN"
+  if not exist then alert
 
 check file database with path /home/eclips/.komodo/wallet.dat
   if timestamp > 15 minutes then alert
