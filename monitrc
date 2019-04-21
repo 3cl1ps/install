@@ -78,8 +78,6 @@ CHECK PROCESS CEAL MATCHING "-ac_name=CEAL"
   if not exist then alert
 CHECK PROCESS MESH MATCHING "-ac_name=MESH"
   if not exist then alert
-CHECK PROCESS MNZ MATCHING "-ac_name=MNZ"
-  if not exist then alert
 CHECK PROCESS AXO MATCHING "-ac_name=AXO"
   if not exist then alert
 CHECK PROCESS ETOMIC MATCHING "-ac_name=ETOMIC"
