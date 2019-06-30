@@ -2,10 +2,10 @@ cd ~/komodo
 git pull
 git clean -fdx
 cp ../SuperNET/iguana/pubkey.txt src/
-./zcutil/build.sh
+./zcutil/build.sh -8
 cd ../hush3
 git pull
-make -j8
+./zcutil/build.sh -8
 cd ../chips3
 git pull
 make -j8
@@ -23,8 +23,8 @@ sudo make install
 sudo ldconfig
 cd ../VerusCoin
 git pull
-make -j8
+./zcutil/build.sh -8
 cd ../gincoin
 git pull
-make -j8
+./zcutil/build.sh -8
 cd ~
