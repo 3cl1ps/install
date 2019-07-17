@@ -1,5 +1,6 @@
 #!/bin/bash
 # GIN build script for Ubuntu & Debian 9 v.3 (c) Decker (and webworker)
+sudo apt-get update
 berkeleydb () {
     GIN_ROOT=$(pwd)
     GIN_PREFIX="${GIN_ROOT}/db4"
