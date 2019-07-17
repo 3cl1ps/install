@@ -10,13 +10,14 @@ git checkout beta
 ./zcutil/build.sh -j8
 mkdir ~/.komodo
 rm ~/.komodo/komodo.conf
-echo "server=1" >> ~/.komodo/komodo.conf
-echo "listen=1" >> ~/.komodo/komodo.conf
-echo "txindex=1" >> ~/.komodo/komodo.conf
 echo "rpcuser=`head -c 32 /dev/urandom | base64`" >> ~/.komodo/komodo.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.komodo/komodo.conf
-echo "bind=127.0.0.1" >> ~/.komodo/komodo.conf
+echo "txindex=1" >> ~/.komodo/komodo.conf
+echo "server=1" >> ~/.komodo/komodo.conf
+echo "daemon=1" >> ~/.komodo/komodo.conf
+echo "rpcworkqueue=256" >> ~/.komodo/komodo.conf
 echo "rpcbind=127.0.0.1" >> ~/.komodo/komodo.conf
+echo "rpcallowip=127.0.0.1" >> ~/.komodo/komodo.conf
 chmod 0600 ~/.komodo/komodo.conf
 
 sudo ln -sf /home/eclips/komodo/src/komodo-cli /usr/local/bin/komodo-cli
