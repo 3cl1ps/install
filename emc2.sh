@@ -1,5 +1,6 @@
 #!/bin/bash
 # EMC2 build script for Ubuntu & Debian 9 v.3 (c) Decker (and webworker)
+sudo apt-get update
 cd ~
 git clone https://github.com/emc2foundation/einsteinium.git 
 cd einsteinium
