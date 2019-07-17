@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get update
 cd ~
 git clone https://github.com/MyHush/hush3
 cd hush3
