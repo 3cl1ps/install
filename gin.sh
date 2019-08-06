@@ -28,7 +28,7 @@ mkdir ~/.gincoincore
 rm ~/.gincoincore/gincoin.conf
 echo "server=1" >> ~/.gincoincore/gincoin.conf
 echo "txindex=1" >> ~/.gincoincore/gincoin.conf
-daemon=1
+echo "daemon=1" >> ~/.gincoincore/gincoin.conf
 echo "rpcuser=bartergame" >> ~/.gincoincore/gincoin.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.gincoincore/gincoin.conf
 echo "litemode=1" >> ~/.gincoincore/gincoin.conf
