@@ -35,9 +35,13 @@ mkdir ~/.einsteinium
 rm ~/.einsteinium/einsteinium.conf
 echo "txindex=1" >> ~/.einsteinium/einsteinium.conf
 echo "server=1" >> ~/.einsteinium/einsteinium.conf
+echo "daemon=1" >> ~/.einsteinium/einsteinium.conf
 echo "listen=0" >> ~/.einsteinium/einsteinium.conf
 echo "rpcuser=`head -c 32 /dev/urandom | base64`" >> ~/.einsteinium/einsteinium.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.einsteinium/einsteinium.conf
+echo "bind=127.0.0.1" >> ~/.einsteinium/einsteinium.conf
+echo "rpcbind=127.0.0.1" >> ~/.einsteinium/einsteinium.conf
+echo "rpcallowip=127.0.0.1" >> ~/.einsteinium/einsteinium.conf
 chmod 0600 ~/.einsteinium/einsteinium.conf
 
 berkeleydb
