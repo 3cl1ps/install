@@ -28,9 +28,13 @@ mkdir ~/.gincoincore
 rm ~/.gincoincore/gincoin.conf
 echo "server=1" >> ~/.gincoincore/gincoin.conf
 echo "txindex=1" >> ~/.gincoincore/gincoin.conf
+daemon=1
 echo "rpcuser=bartergame" >> ~/.gincoincore/gincoin.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.gincoincore/gincoin.conf
 echo "litemode=1" >> ~/.gincoincore/gincoin.conf
+echo "bind=127.0.0.1" >> ~/.gincoincore/gincoin.conf
+echo "rpcbind=127.0.0.1" >> ~/.gincoincore/gincoin.conf
+echo "rpcallowip=127.0.0.1" >> ~/.gincoincore/gincoin.conf
 chmod 0600 ~/.gincoincore/gincoin.conf
 
 cd ~
