@@ -12,6 +12,10 @@ make -j4
 mkdir ~/.gamecredits
 rm ~/.gamecredits/gamecredits.conf
 echo "server=1" >> ~/.gamecredits/gamecredits.conf
+echo "daemon=1" >> ~/.gamecredits/gamecredits.conf
+echo "bind=127.0.0.1" >> ~/.gamecredits/gamecredits.conf
+echo "rpcbind=127.0.0.1" >> ~/.gamecredits/gamecredits.conf
+echo "rpcallowip=127.0.0.1" >> ~/.gamecredits/gamecredits.conf
 echo "txindex=1" >> ~/.gamecredits/gamecredits.conf
 echo "listen=0" >> ~/.gamecredits/gamecredits.conf
 echo "rpcuser=bartergame" >> ~/.gamecredits/gamecredits.conf
