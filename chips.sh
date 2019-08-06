@@ -23,13 +23,20 @@ make -j$(nproc)
 
 mkdir ~/.chips
 rm ~/.chips/chips.conf
-echo "txindex=1" >> ~/.chips/chips.conf
 echo "server=1" >> ~/.chips/chips.conf
-echo "listen=0" >> ~/.chips/chips.conf
-echo "rpcuser=`head -c 32 /dev/urandom | base64`" >> ~/.chips/chips.conf
+echo "daemon=1" >> ~/.chips/chips.conf
+echo "txindex=1" >> ~/.chips/chips.conf
+echo "rpcuser=user" >> ~/.chips/chips.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.chips/chips.conf
-echo "addnode=5.9.253.195" >> ~/.chips/chips.conf
-echo "addnode=74.208.210.191" >> ~/.chips/chips.conf
+echo "addnode=159.69.23.29" >> ~/.chips/chips.conf
+echo "addnode=95.179.192.102" >> ~/.chips/chips.conf
+echo "addnode=149.56.29.163" >> ~/.chips/chips.conf
+echo "addnode=145.239.149.173" >> ~/.chips/chips.conf
+echo "addnode=178.63.53.110" >> ~/.chips/chips.conf
+echo "addnode=151.80.108.76" >> ~/.chips/chips.conf
+echo "addnode=185.137.233.199" >> ~/.chips/chips.conf
+echo "rpcbind=127.0.0.1" >> ~/.chips/chips.conf
+echo "rpcallowip=127.0.0.1" >> ~/.chips/chips.conf
 chmod 0600 ~/.chips/chips.conf
 
 sudo ln -sf /home/eclips/chips3/src/chips-cli /usr/local/bin/chips-cli
