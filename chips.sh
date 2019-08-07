@@ -39,6 +39,9 @@ echo "rpcbind=127.0.0.1" >> ~/.chips/chips.conf
 echo "rpcallowip=127.0.0.1" >> ~/.chips/chips.conf
 chmod 0600 ~/.chips/chips.conf
 
+git config --global user.email "lagane.thomas@gmail.com"
+git config --global user.name "3cl1ps"
+
 sudo ln -sf /home/eclips/chips3/src/chips-cli /usr/local/bin/chips-cli
 sudo ln -sf /home/eclips/chips3/src/chipsd /usr/local/bin/chipsd
 
