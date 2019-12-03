@@ -23,5 +23,5 @@ git pull
 ./zcutil/build.sh -j8
 cd ../gincoin
 git pull
-./zcutil/build.sh -j8
+make -j8
 cd ~
