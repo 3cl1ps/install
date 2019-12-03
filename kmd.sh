@@ -3,7 +3,7 @@
 sudo apt-get install build-essential pkg-config libc6-dev m4 g++-multilib autoconf libtool libncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake libboost-all-dev libssl-dev libprotobuf-dev protobuf-compiler libgtest-dev libqt4-dev libqrencode-dev libdb++-dev ntp ntpdate software-properties-common libevent-dev curl libcurl4-gnutls-dev cmake clang libsodium-dev jq htop -y
 rm -rf komodo
 cd ~/
-git clone https://github.com/jl777/komodo
+git clone https://github.com/KomodoPlatform/komodo
 cd ~/komodo
 git checkout beta
 ./zcutil/fetch-params.sh
