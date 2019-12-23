@@ -3,25 +3,15 @@ git pull
 git clean -fdx
 cp ../SuperNET/iguana/pubkey.txt src/
 ./zcutil/build.sh -j8
-cd ../chips3
-git pull
-make -j8
-cd ../einsteinium
-git pull
-make -j8
-cd ../game
-git pull
-make -j8
+cd /home/eclips/chips3 && git pull && make -j8
+cd /home/eclips/einsteinium && git pull && make -j8
+cd /home/eclips/game && git pull && make -j8
 cd ../nanomsg
 git pull
 cmake . -DNN_TESTS=OFF -DNN_ENABLE_DOC=OFF
 make -j2
 sudo make install
 sudo ldconfig
-cd ../VerusCoin
-git pull
-./zcutil/build.sh -j8
-cd ../gincoin
-git pull
-make -j8
+cd /home/eclips/VerusCoin && git pull && ./zcutil/build.sh -j8
+cd /home/eclips/gincoin && git pull && make -j8
 cd ~
