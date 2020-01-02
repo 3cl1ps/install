@@ -25,3 +25,4 @@ for coins in "${coinlist[@]}"; do
         echo ${coin[0]} $balance
         $komodocli -ac_name=${coin[0]} sendtoaddress $addresstarget $balance "" "" true
     fi
+done
