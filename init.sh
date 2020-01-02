@@ -1,4 +1,4 @@
-sudo apt install curl tmux zsh git mosh
+sudo apt install curl tmux zsh git mosh vim
 cd
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
