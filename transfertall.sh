@@ -22,8 +22,8 @@ bitcoin-cli sendtoaddress $addresstarget `bitcoin-cli getbalance` "" "" true
 for coins in "${coinlist[@]}"; do
     coin=($coins)
     if [[ ! ${ignoreacs[*]} =~ ${coin[0]} ]]; then
-        balance=$($komodocli -ac_name=${coin[0]} getbalance)
+        balance=$(komodo-cli -ac_name=${coin[0]} getbalance)
         echo ${coin[0]} $balance
-        $komodocli -ac_name=${coin[0]} sendtoaddress $addresstarget $balance "" "" true
+        komodo-cli -ac_name=${coin[0]} sendtoaddress $addresstarget $balance "" "" true
     fi
 done
