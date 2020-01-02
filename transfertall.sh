@@ -17,6 +17,7 @@ gamecredits-cli sendtoaddress $addresstarget `gamecredits-cli getbalance` "" "" 
 gincoin-cli sendtoaddress $addresstarget `gincoin-cli getbalance` "" "" true
 einsteinium-cli sendtoaddress $addresstarget `einsteinium-cli getbalance` "" "" true
 hush-cli sendtoaddress $addresstarget `hush-cli getbalance` "" "" true
+bitcoin-cli sendtoaddress $addresstarget `bitcoin-cli getbalance` "" "" true
 
 for coins in "${coinlist[@]}"; do
     coin=($coins)
