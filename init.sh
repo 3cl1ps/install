@@ -25,3 +25,9 @@ git config --global user.email "lagane.thomas@gmail.com"
 git config --global user.name "3cl1ps"
 
 git clone https://github.com/KomodoPlatform/dPoW.git
+
+apt-get install -y locales
+locale-gen "en_US.UTF-8"
+update-locale LC_ALL="en_US.UTF-8"
+export LC_ALL=en_US.UTF-8
+
