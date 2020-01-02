@@ -11,7 +11,7 @@ if [[ ! -z $addresstarget ]]; then
     echo "Usage: ./transferall <addresstotransferto>"
 fi
 
-$komodocli sendtoaddress $addresstarget `komodo-cli getbalance` "" "" true
+komodo-cli sendtoaddress $addresstarget `komodo-cli getbalance` "" "" true
 chips-cli sendtoaddress $addresstarget `chips-cli getbalance` "" "" true
 gamecredits-cli sendtoaddress $addresstarget `gamecredits-cli getbalance` "" "" true
 gincoin-cli sendtoaddress $addresstarget `gincoin-cli getbalance` "" "" true
