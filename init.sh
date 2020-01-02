@@ -24,4 +24,4 @@ sudo ldconfig
 git config --global user.email "lagane.thomas@gmail.com"
 git config --global user.name "3cl1ps"
 
-https://github.com/KomodoPlatform/dPoW.git
+git clone https://github.com/KomodoPlatform/dPoW.git
