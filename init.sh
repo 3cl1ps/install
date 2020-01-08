@@ -1,8 +1,8 @@
 #!/bin/bash
 
 read -p "Enter hostname: " NEWHOSTNAME
-echo "$NEWHOSTNAME" > /etc/hostname
-sed -i "1i127.0.0.1 ${NEWHOSTNAME}" /etc/hosts
+sudo echo "$NEWHOSTNAME" > /etc/hostname
+sudo sed -i "1i127.0.0.1 ${NEWHOSTNAME}" /etc/hosts
 
 read -p "Add non-root sudo user? (y/n) " -n 1 DONONROOT
 echo
@@ -79,8 +79,8 @@ git config --global user.name "3cl1ps"
 
 git clone https://github.com/KomodoPlatform/dPoW.git
 
-apt-get install -y locales
-locale-gen "en_US.UTF-8"
-update-locale LC_ALL="en_US.UTF-8"
+sudo apt-get install -y locales
+sudo locale-gen "en_US.UTF-8"
+sudo update-locale LC_ALL="en_US.UTF-8"
 export LC_ALL=en_US.UTF-8
 
