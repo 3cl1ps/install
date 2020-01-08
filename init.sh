@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -p "Enter hostname: " NEWHOSTNAME
-sudo echo "$NEWHOSTNAME" > /etc/hostname
+echo "$NEWHOSTNAME" | sudo tee -a  /etc/hostname
 sudo sed -i "1i127.0.0.1 ${NEWHOSTNAME}" /etc/hosts
 
 read -p "Add non-root sudo user? (y/n) " -n 1 DONONROOT
