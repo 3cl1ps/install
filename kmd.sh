@@ -18,14 +18,14 @@ echo "daemon=1" >> ~/.komodo/komodo.conf
 echo "rpcworkqueue=256" >> ~/.komodo/komodo.conf
 echo "rpcbind=127.0.0.1" >> ~/.komodo/komodo.conf
 echo "rpcallowip=127.0.0.1" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RFQNjTfcvSAmf8D83og1NrdHj1wH2fc5X4" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RYJLF5h4gPe527RyqqcgiiD93GwYbUmL9o" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RUaRqxuNc7a5MqsW3T19bfJUmmKFQtGHtr" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RPknkGAHMwUBvfKQfvw9FyatTZzicSiN4y" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RMqbQz4NPNbG15QBwy9EFvLn4NX5Fa7w5g" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RTZqkgcLLT2w7RtgxxCz4eFoGtFiq2YUY1" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RQipE6ycbVVb9vCkhqrK8PGZs2p5YmiBtg" >> ~/.komodo/komodo.conf
-echo "whitelistaddress=RV4SqkaYAJajvqNANve8f4JoLS5BJZMf7E" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RFQNjTfcvSAmf8D83og1NrdHj1wH2fc5X4" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RYJLF5h4gPe527RyqqcgiiD93GwYbUmL9o" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RUaRqxuNc7a5MqsW3T19bfJUmmKFQtGHtr" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RPknkGAHMwUBvfKQfvw9FyatTZzicSiN4y" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RMqbQz4NPNbG15QBwy9EFvLn4NX5Fa7w5g" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RTZqkgcLLT2w7RtgxxCz4eFoGtFiq2YUY1" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RQipE6ycbVVb9vCkhqrK8PGZs2p5YmiBtg" >> ~/.komodo/komodo.conf
+#echo "whitelistaddress=RV4SqkaYAJajvqNANve8f4JoLS5BJZMf7E" >> ~/.komodo/komodo.conf
 chmod 0600 ~/.komodo/komodo.conf
 
 sudo ln -sf /home/eclips/komodo/src/komodo-cli /usr/local/bin/komodo-cli
