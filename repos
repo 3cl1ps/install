@@ -1,0 +1,11 @@
+#for git checking - path and remote branch
+declare -A repos=(
+[KMD]="$HOME/komodo origin/master"
+[dPoW]="$HOME/dPoW origin/master"
+[CHIPS]="$HOME/chips3 origin/dev"
+[GAME]="$HOME/GameCredits origin/master"
+[EMC2]="$HOME/einsteinium origin/master"
+[GIN]="$HOME/gincoin-core origin/master"
+[VRSC]="$HOME/VerusCoin origin/master"
+[HUSH3]="$HOME/hush3 origin/master"
+)
