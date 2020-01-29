@@ -5,7 +5,7 @@ declare -A repos=(
 [CHIPS]="$HOME/chips3 origin/dev dev"
 [GAME]="$HOME/game origin/master master"
 [EMC2]="$HOME/einsteinium origin/master master"
-[GIN]="$HOME/gincoin-core origin/master master"
+[GIN]="$HOME/gincoin origin/master master"
 [VRSC]="$HOME/VerusCoin origin/master master"
 [HUSH3]="$HOME/hush3 origin/master master"
 )
