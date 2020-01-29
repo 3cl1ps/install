@@ -1,9 +1,10 @@
 #!/bin/bash
+source repos
 cd ~
 sudo apt-get update && sudo apt-get install software-properties-common autoconf git build-essential libtool libprotobuf-c-dev libgmp-dev libsqlite3-dev python python3 zip jq libevent-dev pkg-config libssl-dev libcurl4-gnutls-dev cmake -y
 git clone https://github.com/jl777/chips3.git
 cd chips3/
-git checkout dev
+git checkout ${repos[CHIPS,1]}
 
 CHIPS_ROOT=$(pwd)
 BDB_PREFIX="${CHIPS_ROOT}/db4"
