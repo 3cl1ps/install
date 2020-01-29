@@ -4,6 +4,26 @@
 # @author webworker01
 #
 
+checkRepo () {
+    if [ -z $1 ] ; then
+        return
+    fi
+    repo=(${repos[$1]})
+    prevdir=${PWD}
+
+    cd $repo
+
+    git remote update > /dev/null 2>&1
+
+    localrev=$(git rev-parse HEAD)
+    remoterev=$(git rev-parse ${repo[1]})
+    cd $prevdir
+
+    if [ $localrev != $remoterev ]; then
+        printf "${RED}[U]${NC}"
+    fi
+}
+
 #31 = red (default)
 #32 = green
 #33 = yellow
@@ -19,6 +39,8 @@ log()
     local message=$2
     local color=$3
     local mode=$4
+
+    local datetime=$(date '+%Y-%m-%d %H:%M:%S')
 
     case $color in
         red)
@@ -46,29 +68,73 @@ log()
     fi
 }
 
+calcFee()
+{
+    local vins=$1
+    local vouts=$2
+    local scripttypein=$3
+    local scripttypeout=$4
+
+    if [[ $scripttypein == "p2pk" ]]; then
+        local vinmultiplier=114
+    else
+        local vinmultiplier=150
+    fi
+
+    if [[ $scripttypeout == "p2pk" ]]; then
+        local voutmultiplier=44
+    else
+        local voutmultiplier=35
+    fi
+
+    local size=$(bc -l <<< "${vins} * ${vinmultiplier} + ${vouts} * ${voutmultiplier} + 30")
+    local fee=$( printf "%.8f" $(bc -l <<< "${size} / 1000 * ${txfeeperkb}") )
+    # log "calcfee" "size: ${size} fee: ${fee}" "" "file"
+
+    echo "${fee}"
+}
+
+# @return (1|0)
+isSapling()
+{
+    local coin=$1
+    if [[ ! ${sproutcoins[*]} =~ ${coin} ]]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
 sendRaw()
 {
     local rawtx=$1
     local acname=$2
 
     if [[ ! -z $acname ]] && [[ $acname != "KMD" ]]; then
+        coin=$acname
         asset=" -ac_name=${acname}"
     else
+        coin="KMD"
         asset=""
     fi
+
+    sapling=$(isSapling $coin)
 
     if [[ ! -z $rawtx ]]; then
         # nlocktime=$(printf "%08x" $(date +%s) | dd conv=swab 2> /dev/null | rev)
         nlocktime="00000000"
 
-        hex=${rawtx::-8}$nlocktime
-        txtail=000000000000000000000000000000
-        hex=${hex::-38}${nlocktime}${txtail}
+        if (( sapling > 0 )); then
+            txtail="000000000000000000000000000000"
+            hex=${rawtx::-38}${nlocktime}${txtail}
+        else
+            hex=${rawtx::-8}${nlocktime}
+        fi
 
-        signedtx=$(komodo-cli $asset signrawtransaction $hex | jq -r '.hex')
+        signedtx=$($komodocli $asset signrawtransaction $hex | jq -r '.hex')
 
         if [[ ! -z $signedtx ]]; then
-            rawtxid=$(komodo-cli $asset sendrawtransaction $signedtx)
+            rawtxid=$($komodocli $asset sendrawtransaction $signedtx)
         else
             rawtxid="failed no signed tx"
         fi
@@ -106,24 +172,3 @@ timeSince ()
         fi
     fi
 }
-
-checkRepo () {
-    if [ -z $1 ] ; then
-        return
-    fi
-    repo=(${repos[$1]})
-    prevdir=${PWD}
-
-    cd $repo
-
-    git remote update > /dev/null 2>&1
-
-    localrev=$(git rev-parse HEAD)
-    remoterev=$(git rev-parse ${repo[1]})
-    cd $prevdir
-
-    if [ $localrev != $remoterev ]; then
-        printf "${RED}[U]${NC}"
-    fi
-}
-
