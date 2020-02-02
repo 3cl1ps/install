@@ -1,5 +1,7 @@
-15 3 */2 * * /home/eclips/tools_sh/walletresetkmd.sh >/dev/null 2>&1 >> /tmp/resetwalletkmd.log
-*/10 * * * * /home/eclips/tools_sh/recharge.py >/dev/null 2>&1 >> /tmp/recharcheutxo.log
-15 3 */2 * * /home/eclips/tools_sh/walletresetkmdandacs.sh &>> /tmp/resetwalletkmd.log
-20 3 */2 * * /home/eclips/tools_sh/consolidateutxos.sh &>> /tmp/resetwalletkmd.log
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+*/2 * * * * /home/eclips/tools/recharge.py >/dev/null 2>&1 >> /tmp/recharcheutxo.log
+4 */6 * * * /home/eclips/tools/cleanwallettransactions.sh >/dev/null 2>&1 >> /tmp/resetwalletkmd.log
+3 */6 * * * /home/eclips/tools/consolidateutxos.sh "KMD" >/dev/null 2>&1 >> /tmp/resetwalletkmd.log
+2 */6 * * * /home/eclips/tools/payday >/dev/null 2>&1 >> /tmp/payday.log
+#2 7 * * * /home/eclips/tools/walletsize.sh >/dev/null 2>&1 >> /tmp/resetwallet.log
 
