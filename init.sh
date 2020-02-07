@@ -64,9 +64,6 @@ cp .tmux/.tmux.conf.local .
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-mkdir .ssh
-touch .ssh/authorized_keys
-
 git clone https://github.com/nanomsg/nanomsg
 cd nanomsg
 cmake . -DNN_TESTS=OFF -DNN_ENABLE_DOC=OFF
