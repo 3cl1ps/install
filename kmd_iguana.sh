@@ -30,6 +30,9 @@ echo "rpcallowip=127.0.0.1" >> ~/.komodo/komodo.conf
 chmod 0600 ~/.komodo/komodo.conf
 
 echo "pubkey=$PUBKEY" > $HOME/komodo/src/pubkey.txt
+cd ~/
+git clone https://github.com/KomodoPlatform/dPoW.git
+cp $HOME/komodo/src/pubkey.txt $HOME/dPoW/iguana/pubkey.txt
 
 sudo ln -sf /home/eclips/komodo/src/komodo-cli /usr/local/bin/komodo-cli
 sudo ln -sf /home/eclips/komodo/src/komodod /usr/local/bin/komodod
