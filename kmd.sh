@@ -29,6 +29,8 @@ echo "rpcallowip=127.0.0.1" >> ~/.komodo/komodo.conf
 #echo "whitelistaddress=bDnbcXrZ4iMqfnybMgKjWvYosRzgVMToF8" >> ~/.komodo/komodo.conf
 chmod 0600 ~/.komodo/komodo.conf
 
+echo "pubkey=$PUBKEY" > $HOME/komodo/src/pubkey.txt
+
 sudo ln -sf /home/eclips/komodo/src/komodo-cli /usr/local/bin/komodo-cli
 sudo ln -sf /home/eclips/komodo/src/komodod /usr/local/bin/komodod
 
