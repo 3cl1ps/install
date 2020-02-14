@@ -18,6 +18,7 @@ confsetup () {
   echo "bind=127.0.0.1" >> ~/.bitcoin/bitcoin.conf
   echo "rpcbind=127.0.0.1" >> ~/.bitcoin/bitcoin.conf
   echo "rpcallowip=127.0.0.1" >> ~/.bitcoin/bitcoin.conf
+  echo "changeaddress=" >> ~/.bitcoin/bitcoin.conf
   echo "datadir=/bitcoin/" >> ~/.bitcoin/bitcoin.conf
   
   chmod 0600 ~/.bitcoin/bitcoin.conf
