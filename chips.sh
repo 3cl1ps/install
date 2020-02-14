@@ -38,6 +38,7 @@ echo "addnode=151.80.108.76" >> ~/.chips/chips.conf
 echo "addnode=185.137.233.199" >> ~/.chips/chips.conf
 echo "rpcbind=127.0.0.1" >> ~/.chips/chips.conf
 echo "rpcallowip=127.0.0.1" >> ~/.chips/chips.conf
+echo "changeaddress=" >> ~/.chips/chips.conf
 chmod 0600 ~/.chips/chips.conf
 
 git config --global user.email "lagane.thomas@gmail.com"
