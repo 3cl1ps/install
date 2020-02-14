@@ -17,6 +17,7 @@ echo "bind=127.0.0.1" >> ~/.gamecredits/gamecredits.conf
 echo "rpcbind=127.0.0.1" >> ~/.gamecredits/gamecredits.conf
 echo "rpcallowip=127.0.0.1" >> ~/.gamecredits/gamecredits.conf
 echo "txindex=1" >> ~/.gamecredits/gamecredits.conf
+echo "changeaddress=" >> ~/.gamecredits/gamecredits.conf
 echo "rpcuser=bartergame" >> ~/.gamecredits/gamecredits.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.gamecredits/gamecredits.conf
 
