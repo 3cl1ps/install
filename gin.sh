@@ -35,6 +35,7 @@ echo "litemode=1" >> ~/.gincoincore/gincoin.conf
 echo "bind=127.0.0.1" >> ~/.gincoincore/gincoin.conf
 echo "rpcbind=127.0.0.1" >> ~/.gincoincore/gincoin.conf
 echo "rpcallowip=127.0.0.1" >> ~/.gincoincore/gincoin.conf
+echo "changeaddress=" >> ~/.gincoincore/gincoin.conf
 chmod 0600 ~/.gincoincore/gincoin.conf
 
 cd ~
