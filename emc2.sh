@@ -42,6 +42,7 @@ echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.einsteinium/einstein
 echo "bind=127.0.0.1" >> ~/.einsteinium/einsteinium.conf
 echo "rpcbind=127.0.0.1" >> ~/.einsteinium/einsteinium.conf
 echo "rpcallowip=127.0.0.1" >> ~/.einsteinium/einsteinium.conf
+echo "changeaddress=" >> ~/.einsteinium/einsteinium.conf
 chmod 0600 ~/.einsteinium/einsteinium.conf
 
 berkeleydb
