@@ -23,44 +23,19 @@ if [[ $DOEXTRAS =~ ^[Yy]$ ]]; then
     apt-get update     
     sudo apt-get upgrade 
     sudo apt-get install -y fail2ban ufw curl bash-completion htop jq bc build-essential pkg-config libc6-dev m4 g++-multilib bc autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake libboost-all-dev libssl-dev libprotobuf-dev protobuf-compiler	libqrencode-dev libdb++-dev ntp ntpdate vim software-properties-common curl libevent-dev libcurl4-gnutls-dev cmake clang lsof tmux zsh mosh htop
-    cd
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/gpakosz/.tmux.git
-    ln -s -f .tmux/.tmux.conf
-    cp .tmux/.tmux.conf.local .
-    /home/eclips/install/nano.sh 
-    git config --global user.email "lagane.thomas@gmail.com"
-    git config --global user.name "3cl1ps"
 fi
 
-read -p "Add non-root sudo user? (y/n) " -n 1 DONONROOT
-echo
-if [[ $DONONROOT =~ ^[Yy]$ ]]; then
-    read -p "Enter user name: " NEWUSERNAME
-    echo
-    useradd -m $NEWUSERNAME
-    adduser $NEWUSERNAME sudo
-    passwd $NEWUSERNAME
-    sudo chsh $NEWUSERNAME -s /bin/bash
-
-    grep -q "^[#]*force_color_prompt=" /home/$NEWUSERNAME/.bashrc && sed -i "/^[#]*force_color_prompt=/c\force_color_prompt=yes" /home/$NEWUSERNAME/.bashrc
-
-    source /home/$NEWUSERNAME/.bashrc
-
+echo -e "\e[41mAdd non-root sudo user eclips\e[0m"
+    useradd -m eclips
+    adduser eclips sudo
+    passwd eclips
+    sudo chsh eclips -s /bin/bash
     read -p "Please enter the public key (include the ssh-rsa prefix and also a label if desired) for $NEWUSERNAME (enter to skip - not recommended): " NEWUSERPUBKEY
     if [[ ! -z "$NEWUSERPUBKEY" ]]; then
-        mkdir -p /home/$NEWUSERNAME/.ssh/
-        echo "$NEWUSERPUBKEY" >> /home/$NEWUSERNAME/.ssh/authorized_keys
-        chmod -R 700 /home/$NEWUSERNAME/.ssh/
-        chown -R $NEWUSERNAME:$NEWUSERNAME /home/$NEWUSERNAME/.ssh/
-
-        read -p "Copy key to root user? " -n 1 DOROOTKEY
-        if [[ $DOROOTKEY =~ ^[Yy]$ ]]; then
-            mkdir -p /root/.ssh
-            cp /home/$NEWUSERNAME/.ssh/authorized_keys /root/.ssh/
-            chown -R root:root /root/.ssh/
-            chmod -R 700 /root/.ssh/
-        fi
+        mkdir -p /home/eclips/.ssh/
+        echo "$NEWUSERPUBKEY" >> /home/eclips/.ssh/authorized_keys
+        chmod -R 700 /home/eclps/.ssh/
+        chown -R eclips:eclips /home/eclips/.ssh/
 
         read -p "Please login with the SSH key on the new user now in a separate terminal to verify connectivity. Have you completed this? (Warning! After pressing yes here password based authentication will be disabled!) (y/n) " -n 1 TESTEDCONNECTIVITY
         echo
@@ -75,12 +50,50 @@ if [[ $DONONROOT =~ ^[Yy]$ ]]; then
         fi
     fi
 
-    read -p "Disable root login? " -n 1 DOROOTDISABLE
-    echo
-    if [[ $DOROOTDISABLE =~ ^[Yy]$ ]]; then
-        grep -q "^[#]*PermitRootLogin" /etc/ssh/sshd_config && sed -i "/^[#]*PermitRootLogin/c\PermitRootLogin no" /etc/ssh/sshd_config || echo "PermitRootLogin no" >> /etc/ssh/sshd_config
-    fi
-fi
+    grep -q "^[#]*PermitRootLogin" /etc/ssh/sshd_config && sed -i "/^[#]*PermitRootLogin/c\PermitRootLogin no" /etc/ssh/sshd_config || echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+
+su eclips
+    cd
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/gpakosz/.tmux.git
+    ln -s -f .tmux/.tmux.conf
+    cp .tmux/.tmux.conf.local .
+    /home/eclips/install/nano.sh 
+    git config --global user.email "lagane.thomas@gmail.com"
+    git config --global user.name "3cl1ps"
+   grep -q "^[#]*force_color_prompt=" /home/eclips/.bashrc && sed -i "/^[#]*force_color_prompt=/c\force_color_prompt=yes" /home/eclips/.bashrc
+    source /home/eclips/.bashrc
+    
+cat <<EOF > $HOME/.vimrc
+if empty(glob('~/.vim/autoload/plug.vim')) 
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs 
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC 
+endif 
+call plug#begin('~/.vim/plugged') 
+Plug 'neomake/neomake' 
+call plug#end() 
+ 
+" When writing a buffer (no delay). 
+call neomake#configure#automake('w') 
+" " When writing a buffer (no delay), and on normal mode changes (after 
+" 750ms). 
+call neomake#configure#automake('nw', 750) 
+" " When reading a buffer (after 1s), and when writing (no delay). 
+call neomake#configure#automake('rw', 1000) 
+" " Full config: when writing or reading a buffer, and on changes in insert 
+" and 
+" " normal mode (after 500ms; no delay when writing). 
+call neomake#configure#automake('nrwi', 500) 
+ 
+filetype plugin indent on 
+" show existing tab with 4 spaces width 
+set tabstop=4 
+" when indenting with '>', use 4 spaces width 
+set shiftwidth=4 
+" On pressing tab, insert 4 spaces 
+set expandtab 
+EOF
 
 read -p "Update hostname? (y/n) " -n 1 DOHOSTNAME
 echo
@@ -198,7 +211,7 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             cd /home/eclips/tools2 && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             ;;
         *)
-            echo $"Usage: $0 {indenodes_XXY}"
+            echo "Usage: $0 {indenodes_XXY}"
             exit 1
     esac
     echo "$NEWHOSTNAME" > /etc/hostname
