@@ -8,29 +8,21 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-read -p "Configure timezone & locale? (y/n) " -n 1 DOLOCALE
-echo
-if [[ $DOLOCALE =~ ^[Yy]$ ]]; then
         sudo apt-get install -y locales
         sudo locale-gen "en_US.UTF-8"
         sudo update-locale LC_ALL="en_US.UTF-8"
         export LC_ALL=en_US.UTF-8
-fi
 
-read -p "Install extra tools? (y/n) " -n 1 DOEXTRAS
-echo
-if [[ $DOEXTRAS =~ ^[Yy]$ ]]; then
     apt-get update     
     sudo apt-get upgrade 
     sudo apt-get install -y fail2ban ufw curl bash-completion htop jq bc build-essential pkg-config libc6-dev m4 g++-multilib bc autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake libboost-all-dev libssl-dev libprotobuf-dev protobuf-compiler	libqrencode-dev libdb++-dev ntp ntpdate vim software-properties-common curl libevent-dev libcurl4-gnutls-dev cmake clang lsof tmux zsh mosh htop
-fi
 
 echo -e "\e[41mAdd non-root sudo user eclips\e[0m"
     useradd -m eclips
     adduser eclips sudo
     passwd eclips
     sudo chsh eclips -s /bin/bash
-    read -p "Please enter the public key (include the ssh-rsa prefix and also a label if desired) for $NEWUSERNAME (enter to skip - not recommended): " NEWUSERPUBKEY
+    read -p "Please enter the public key (include the ssh-rsa prefix and also a label if desired) for eclips (enter to skip - not recommended): " NEWUSERPUBKEY
     if [[ ! -z "$NEWUSERPUBKEY" ]]; then
         mkdir -p /home/eclips/.ssh/
         echo "$NEWUSERPUBKEY" >> /home/eclips/.ssh/authorized_keys
