@@ -15,7 +15,7 @@ export LC_ALL=en_US.UTF-8
 
 apt-get update     
 sudo apt-get upgrade 
-sudo apt-get install -y fail2ban ufw curl bash-completion htop jq bc build-essential pkg-config libc6-dev m4 g++-multilib bc autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake libboost-all-dev libssl-dev libprotobuf-dev protobuf-compiler	libqrencode-dev libdb++-dev ntp ntpdate vim software-properties-common curl libevent-dev libcurl4-gnutls-dev cmake clang lsof tmux zsh mosh htop
+sudo apt-get install -y fail2ban ufw curl libsodium-dev bash-completion htop jq bc build-essential pkg-config libc6-dev m4 g++-multilib bc autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake libboost-all-dev libssl-dev libprotobuf-dev protobuf-compiler	libqrencode-dev libdb++-dev ntp ntpdate vim software-properties-common curl libevent-dev libcurl4-gnutls-dev cmake clang lsof tmux zsh mosh htop
 
 echo -e "\e[41mAdd non-root sudo user eclips\e[0m"
 useradd -m eclips
