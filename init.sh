@@ -4,7 +4,7 @@
 #
 
 if [ "$EUID" -ne 0 ]; then
-    echo -e "\e[41mPlease use sudo or run as root...\e[0m"
+    echo -e "\e[41mrun as root...\e[0m"
     exit
 fi
 
@@ -57,7 +57,7 @@ grep -q "^[#]*force_color_prompt=" /home/eclips/.bashrc && sed -i "/^[#]*force_c
 source /home/eclips/.bashrc
 
 cat <<EOF > $HOME/.vimrc
-'if empty(glob('~/.vim/autoload/plug.vim')) 
+if empty(glob('~/.vim/autoload/plug.vim')) 
 silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs 
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC 
@@ -84,7 +84,7 @@ set tabstop=4
 " when indenting with '>', use 4 spaces width 
 set shiftwidth=4 
 " On pressing tab, insert 4 spaces 
-set expandtab' 
+set expandtab
 EOF
 
 read -p "Update hostname? (y/n) " -n 1 DOHOSTNAME
