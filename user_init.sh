@@ -3,13 +3,11 @@
 # @author webworker01
 #
 cd
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
-/home/eclips/install/nano.sh 
+
 git config --global user.email "lagane.thomas@gmail.com"
 git config --global user.name "3cl1ps"
+/home/eclips/install/nano.sh 
+
 grep -q "^[#]*force_color_prompt=" /home/eclips/.bashrc && sed -i "/^[#]*force_color_prompt=/c\force_color_prompt=yes" /home/eclips/.bashrc
 source /home/eclips/.bashrc
 
@@ -43,3 +41,7 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces 
 set expandtab
 EOF
+
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
