@@ -18,7 +18,7 @@ gincoin-cli sendtoaddress $addresstarget `gincoin-cli getbalance` "" "" true
 einsteinium-cli sendtoaddress $addresstarget `einsteinium-cli getbalance` "" "" true
 bitcoin-cli sendtoaddress $addresstarget `bitcoin-cli getbalance` "" "" true
 
-/home/eclips/tools/listcoins.sh | while read coin; do
+/home/eclips/komodo/src/listassetchains | while read coin; do
     coin=($coins)
     if [[ ! ${ignoreacs[*]} =~ ${coin[0]} ]]; then
         balance=$(komodo-cli -ac_name=${coin[0]} getbalance)
