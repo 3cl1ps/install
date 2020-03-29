@@ -4,7 +4,6 @@
 #
 # @author webworker01
 #
-source coinlist
 addresstarget=$1
 
 if [[ ! -z $addresstarget ]]; then
