@@ -18,10 +18,9 @@ einsteinium-cli sendtoaddress $addresstarget `einsteinium-cli getbalance` "" "" 
 bitcoin-cli sendtoaddress $addresstarget `bitcoin-cli getbalance` "" "" true
 
 /home/eclips/komodo/src/listassetchains | while read coin; do
-    coin=($coins)
-    if [[ ! ${ignoreacs[*]} =~ ${coin[0]} ]]; then
-        balance=$(komodo-cli -ac_name=${coin[0]} getbalance)
-        echo ${coin[0]} $balance
-        komodo-cli -ac_name=${coin[0]} sendtoaddress $addresstarget $balance "" "" true
+    if [[ ! ${ignoreacs[*]} =~ ${coin} ]]; then
+        balance=$(komodo-cli -ac_name=${coin} getbalance)
+        echo ${coin} $balance
+        komodo-cli -ac_name=${coin} sendtoaddress $addresstarget $balance "" "" true
     fi
 done
