@@ -13,6 +13,6 @@ if [[ -z "${specific_coin}" ]] || [[ "${specific_coin}" = "KMD" ]]; then
 fi
 /home/eclips/komodo/src/listassetchains | while read coin; do
   if [[ -z "${specific_coin}" ]] || [[ "${specific_coin}" = "${coin}" ]]; then
-    echo "${komodo_cli} -ac_name=${coin}"
+    echo "komodo-cli -ac_name=${coin}"
   fi
 done
