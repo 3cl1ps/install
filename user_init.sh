@@ -6,6 +6,7 @@ cd
 
 git config --global user.email "lagane.thomas@gmail.com"
 git config --global user.name "3cl1ps"
+git config --global push.default matching
 /home/eclips/install/nano.sh 
 
 grep -q "^[#]*force_color_prompt=" /home/eclips/.bashrc && sed -i "/^[#]*force_color_prompt=/c\force_color_prompt=yes" /home/eclips/.bashrc
