@@ -41,6 +41,7 @@ set tabstop=4
 set shiftwidth=4 
 " On pressing tab, insert 4 spaces 
 set expandtab
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 EOF
 
 echo "source .bash_profile" > /home/eclips/.zshrc
