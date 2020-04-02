@@ -1,160 +1,211 @@
-# bash programmable completion for komodo-cli(1)
-# Copyright (c) 2012-2016 The Bitcoin Core developers
-# Distributed under the MIT software license, see the accompanying
-# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+#compdef komodo-cli
+# ------------------------------------------------------------------------------
+# Copyright (c) 2017 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for komodo-cli (https://komodo.org).
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Ian Ker-Seymer (https://github.com/ianks)
+#
+# ------------------------------------------------------------------------------
 
-# call $komodo-cli for RPC
-_komodo_rpc() {
-    # determine already specified args necessary for RPC
-    local rpcargs=()
-    for i in ${COMP_LINE}; do
-        case "$i" in
-            -conf=*|-datadir=*|-regtest|-rpc*|-testnet)
-                rpcargs=( "${rpcargs[@]}" "$i" )
-                ;;
-        esac
-    done
-    $komodo_cli "${rpcargs[@]}" "$@"
+_komodo-cli() {
+  local context state line curcontext="$curcontext"
+
+  _arguments -C \
+    -?'[This help message]' \
+    -conf='[Specify configuration file. Relative paths will be prefixed by datadir location. (default: komodo.conf)]:PATH:_files' \
+    -datadir='[Specify data directory]:PATH:_directories' \
+    -getinfo='[Get general information from the remote server.]' \
+    -testnet'[Use the test chain]' \
+    -regtest'[Enter  regression test mode, which uses a special chain in which blocks can be solved instantly. This is intended for regression testing tools and app development.]' \
+    -named'[Pass named instead of positional arguments (default: false)]' \
+    -stdin'[Read extra arguments from standard input, one per line until EOF/Ctrl-D (recommended for sensitive information such as passphrases)]' \
+    -rpcport='[Connect to JSON-RPC on <port> (default: 8332, testnet: 18332, regtest: 18443)]: :_guard "[[\:digit\:]]#" "PORT"' \
+    -rpcwait'[Wait for RPC server to start]' \
+    -rpcuser='[Username for JSON-RPC connections]:RPCUSER:()' \
+    -rpcpassword='[Password for JSON-RPC connections]:RPCPASSWORD:()' \
+    -rpcconnect='[Send commands to node running on <ip> (default: 127.0.0.1)]:RPCCONNECT:_hosts' \
+    -rpcclienttimeout='[Timeout during HTTP requests, or 0 for no timeout. (default: 900)]: :_guard "[[\:digit\:]]#" "RPCCLIENTTIMEOUT"' \
+    ':subcommand:->subcommand' && ret=0
+
+  case $state in
+    subcommand)
+    subcommands=(
+      'getbestblockhash'
+      'getblock'
+      'getblockchaininfo'
+      'getblockcount'
+      'getblockfilter'
+      'getblockhash'
+      'getblockheader'
+      'getblockstats'
+      'getchaintips'
+      'getchaintxstats'
+      'getdifficulty'
+      'getmempoolancestors'
+      'getmempooldescendants'
+      'getmempoolentry'
+      'getmempoolinfo'
+      'getrawmempool'
+      'gettxout'
+      'gettxoutproof'
+      'gettxoutsetinfo'
+      'preciousblock'
+      'pruneblockchain'
+      'savemempool'
+      'scantxoutset'
+      'verifychain'
+      'verifytxoutproof'
+      'getmemoryinfo'
+      'getrpcinfo'
+      'help'
+      'logging'
+      'stop'
+      'uptime'
+      'generatetoaddress'
+      'getblocktemplate'
+      'getmininginfo'
+      'getnetworkhashps'
+      'prioritisetransaction'
+      'submitblock'
+      'submitheader'
+      'addnode'
+      'clearbanned'
+      'disconnectnode'
+      'getaddednodeinfo'
+      'getconnectioncount'
+      'getnettotals'
+      'getnetworkinfo'
+      'getnodeaddresses'
+      'getpeerinfo'
+      'listbanned'
+      'ping'
+      'setban'
+      'setnetworkactive'
+      'analyzepsbt'
+      'combinepsbt'
+      'combinerawtransaction'
+      'converttopsbt'
+      'createpsbt'
+      'createrawtransaction'
+      'decodepsbt'
+      'decoderawtransaction'
+      'decodescript'
+      'finalizepsbt'
+      'fundrawtransaction'
+      'getrawtransaction'
+      'joinpsbts'
+      'sendrawtransaction'
+      'signrawtransactionwithkey'
+      'testmempoolaccept'
+      'utxoupdatepsbt'
+      'createmultisig'
+      'deriveaddresses'
+      'estimatesmartfee'
+      'getdescriptorinfo'
+      'signmessagewithprivkey'
+      'validateaddress'
+      'verifymessage'
+      'abandontransaction'
+      'abortrescan'
+      'addmultisigaddress'
+      'backupwallet'
+      'bumpfee'
+      'createwallet'
+      'dumpprivkey'
+      'dumpwallet'
+      'encryptwallet'
+      'getaddressesbylabel'
+      'getaddressinfo'
+      'getbalance'
+      'getbalances'
+      'getnewaddress'
+      'getrawchangeaddress'
+      'getreceivedbyaddress'
+      'getreceivedbylabel'
+      'gettransaction'
+      'getunconfirmedbalance'
+      'getwalletinfo'
+      'importaddress'
+      'importmulti'
+      'importprivkey'
+      'importprunedfunds'
+      'importpubkey'
+      'importwallet'
+      'keypoolrefill'
+      'listaddressgroupings'
+      'listlabels'
+      'listlockunspent'
+      'listreceivedbyaddress'
+      'listreceivedbylabel'
+      'listsinceblock'
+      'listtransactions'
+      'listunspent'
+      'listwalletdir'
+      'listwallets'
+      'loadwallet'
+      'lockunspent'
+      'removeprunedfunds'
+      'rescanblockchain'
+      'sendmany'
+      'sendtoaddress'
+      'sethdseed'
+      'setlabel'
+      'settxfee'
+      'setwalletflag'
+      'signmessage'
+      'signrawtransactionwithwallet'
+      'unloadwallet'
+      'walletcreatefundedpsbt'
+      'walletlock'
+      'walletpassphrase'
+      'walletpassphrasechange'
+      'walletprocesspsbt'
+      'getzmqnotifications'
+    )
+
+    _describe -t subcommands 'komodo-cli subcommands' subcommands && ret=0
+  esac
+
+  return ret
 }
 
-# Add wallet accounts to COMPREPLY
-_komodo_accounts() {
-    local accounts
-    # Accounts are deprecated in komodo
-    #accounts=$(_komodo_rpc listaccounts | awk -F '"' '{ print $2 }')
-    accounts="\\\"\\\""
-    COMPREPLY=( "${COMPREPLY[@]}" $( compgen -W "$accounts" -- "$cur" ) )
-}
+_komodo-cli "$@"
 
-_komodo_cli() {
-    local cur prev words=() cword
-    local komodo_cli
-
-    # save and use original argument to invoke komodo-cli for -help, help and RPC
-    # as komodo-cli might not be in $PATH
-    komodo_cli="$1"
-
-    COMPREPLY=()
-    _get_comp_words_by_ref -n = cur prev words cword
-
-    if ((cword > 5)); then
-        case ${words[cword-5]} in
-            sendtoaddress)
-                COMPREPLY=( $( compgen -W "true false" -- "$cur" ) )
-                return 0
-                ;;
-        esac
-    fi
-
-    if ((cword > 4)); then
-        case ${words[cword-4]} in
-            importaddress|listtransactions|setban)
-                COMPREPLY=( $( compgen -W "true false" -- "$cur" ) )
-                return 0
-                ;;
-            signrawtransaction)
-                COMPREPLY=( $( compgen -W "ALL NONE SINGLE ALL|ANYONECANPAY NONE|ANYONECANPAY SINGLE|ANYONECANPAY" -- "$cur" ) )
-                return 0
-                ;;
-        esac
-    fi
-
-    if ((cword > 3)); then
-        case ${words[cword-3]} in
-            addmultisigaddress)
-                _komodo_accounts
-                return 0
-                ;;
-            getbalance|gettxout|importaddress|importpubkey|importprivkey|listreceivedbyaccount|listreceivedbyaddress|listsinceblock)
-                COMPREPLY=( $( compgen -W "true false" -- "$cur" ) )
-                return 0
-                ;;
-        esac
-    fi
-
-    if ((cword > 2)); then
-        case ${words[cword-2]} in
-            addnode)
-                COMPREPLY=( $( compgen -W "add remove onetry" -- "$cur" ) )
-                return 0
-                ;;
-            setban)
-                COMPREPLY=( $( compgen -W "add remove" -- "$cur" ) )
-                return 0
-                ;;
-            fundrawtransaction|getblock|getblockheader|getmempoolancestors|getmempooldescendants|getrawtransaction|gettransaction|listaccounts|listreceivedbyaccount|listreceivedbyaddress|sendrawtransaction)
-                COMPREPLY=( $( compgen -W "true false" -- "$cur" ) )
-                return 0
-                ;;
-            z_importkey|z_importviewingkey)
-                COMPREPLY=( $( compgen -W "yes no whenkeyisnew" -- "$cur" ) )
-                return 0
-                ;;
-            move|setaccount)
-                _komodo_accounts
-                return 0
-                ;;
-        esac
-    fi
-
-    case "$prev" in
-        backupwallet|dumpwallet|importwallet|z_exportwallet|z_importwallet)
-            _filedir
-            return 0
-            ;;
-        getaddednodeinfo|getrawmempool|lockunspent|setgenerate)
-            COMPREPLY=( $( compgen -W "true false" -- "$cur" ) )
-            return 0
-            ;;
-        getaccountaddress|getaddressesbyaccount|getbalance|getnewaddress|getreceivedbyaccount|listtransactions|move|sendfrom|sendmany)
-            _komodo_accounts
-            return 0
-            ;;
-    esac
-
-    case "$cur" in
-        -conf=*)
-            cur="${cur#*=}"
-            _filedir
-            return 0
-            ;;
-        -datadir=*)
-            cur="${cur#*=}"
-            _filedir -d
-            return 0
-            ;;
-        -*=*)	# prevent nonsense completions
-            return 0
-            ;;
-        *)
-            local helpopts commands
-
-            # only parse -help if senseful
-            if [[ -z "$cur" || "$cur" =~ ^- ]]; then
-                helpopts=$($komodo_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
-            fi
-
-            # only parse help if senseful
-            if [[ -z "$cur" || "$cur" =~ ^[a-z] ]]; then
-                commands=$(_komodo_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
-            fi
-
-            COMPREPLY=( $( compgen -W "$helpopts $commands" -- "$cur" ) )
-
-            # Prevent space if an argument is desired
-            if [[ $COMPREPLY == *= ]]; then
-                compopt -o nospace
-            fi
-            return 0
-            ;;
-    esac
-} &&
-complete -F _komodo_cli komodo-cli
-
-# Local variables:
-# mode: shell-script
-# sh-basic-offset: 4
-# sh-indent-comment: t
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
 # indent-tabs-mode: nil
+# sh-basic-offset: 2
 # End:
-# ex: ts=4 sw=4 et filetype=sh
+# vim: ft=zsh sw=2 ts=2 et
