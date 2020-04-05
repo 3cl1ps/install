@@ -13,8 +13,8 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 #  plugins=(… zsh-completions)//  autoload -U compinit && compinit
 
-grep -q "^[#]*force_color_prompt=" /home/eclips/.bashrc && sed -i "/^[#]*force_color_prompt=/c\force_color_prompt=yes" /home/eclips/.bashrc
-source /home/eclips/.bashrc
+#grep -q "^[#]*force_color_prompt=" /home/eclips/.bashrc && sed -i "/^[#]*force_color_prompt=/c\force_color_prompt=yes" /home/eclips/.bashrc
+#source /home/eclips/.bashrc
 
 cat <<EOF > $HOME/.vimrc
 if empty(glob('~/.vim/autoload/plug.vim')) 
