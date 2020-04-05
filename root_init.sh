@@ -185,6 +185,3 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
     echo "$NEWHOSTNAME" > /etc/hostname
     sed -i "1i127.0.0.1 ${NEWHOSTNAME}" /etc/hosts
 fi
-su eclips
-cd
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
