@@ -43,3 +43,6 @@ git checkout ${repos[AYA,1]}
 berkeleydb
 buildAYA
 echo "Done building AYA!"
+sudo ln -sf /home/eclips/AYAv2/src/aryacoin-cli /usr/local/bin/aryacoin-cli
+sudo ln -sf /home/eclips/AYAv2/src/aryacoind /usr/local/bin/aryacoind
+aryacoind
