@@ -161,4 +161,3 @@ echo "[${coin}] Running UTXO splitter"
 /home/eclips/tools/acsplit ${coin} 30 > /dev/null 2>&1 &
 
 echo "[${coin}] Wallet reset complete!"
-echo "[${coin}] Wallet reset complete!"
