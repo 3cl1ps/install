@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-FROM_ADDRESS=RWgpXEycP4rVkFp3j7WzV6E2LfR842WswN
+FROM_ADDRESS=$KMDADDRESS
 curl -s https://kmdexplorer.io/insight-api-komodo/addr/$FROM_ADDRESS/utxo > all.utxos
 utxos=$(<all.utxos)
 utxo=$(echo "$utxos"   | jq -c "[.[] | select (.confirmations > 100 and .amount != 0.0001) | { txid: .txid, vout: .vout}]")
