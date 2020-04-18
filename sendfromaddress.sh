@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 FROM_ADDRESS=$KMDADDRESS
