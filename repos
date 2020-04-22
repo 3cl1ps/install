@@ -1,6 +1,6 @@
 #for git checking - path and remote branch
 declare -A repos=(
-[KMD]="/home/eclips/komodo origin/master master"
+[KMD]="/home/eclips/komodo origin/master dev"
 [dPoW]="/home/eclips/dPoW origin/master master"
 [CHIPS]="/home/eclips/chips3 origin/dev dev"
 [GAME]="/home/eclips/game origin/master master"
