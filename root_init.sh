@@ -78,8 +78,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;
         indenodes_na)
             cat <<EOF > $HOME/.bash_profile
@@ -94,8 +92,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;
         indenodes_sh)
             cat <<EOF > $HOME/.bash_profile
@@ -110,8 +106,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;
         indenodes_ae2)
             cat <<EOF > $HOME/.bash_profile
@@ -126,8 +120,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools2 && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;   
         indenodes_eu2)
             cat <<EOF > $HOME/.bash_profile
@@ -142,8 +134,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools2 && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;
         indenodes_na2)
             cat <<EOF > $HOME/.bash_profile
@@ -158,8 +148,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools2 && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;
         indenodes_sh2)
             cat <<EOF > $HOME/.bash_profile
@@ -174,8 +162,6 @@ if [[ $DOHOSTNAME =~ ^[Yy]$ ]]; then
             fi
             cd /home/eclips/tools2 && git pull >/dev/null; cd /home/eclips/install && git pull >/dev/null; cd
             alias psgrep="ps aux | grep -v grep | grep"
-            source /home/eclips/install/bitcoin-cli.bash-completion
-            source /home/eclips/install/komodo-cli.bash-completion
             ;;
         *)
             echo "Usage: $0 {indenodes_XXY}"
