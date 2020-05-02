@@ -85,7 +85,6 @@ if (( $(echo "$BALANCE > 0" |bc -l) )); then
     echo "[${coin}] UTXOs unlocked"
 
     echo "[${coin}] Sending entire balance to the temp adress"
-    echo $BALANCE
     do_send
 
     while [ "$ERRORLEVEL" -ne "0" ]
