@@ -66,53 +66,55 @@ function get_balance()
 
 echo "[${coin}] Saving the main address privkey to reimport later"
 privkey=$(${cli} dumpprivkey ${address})
+if [ "$?" -ne "0" ]; then
+    exit
+fi
 echo "[${coin}] Main address: ${address}"
 echo "[${coin}] Main privkey: ${privkey}"
 
-echo "[${coin}] Generating temp address"
-temp_address=$(${cli} getnewaddress)
-temp_privkey=$(${cli} dumpprivkey ${temp_address})
-echo "[${coin}] Temp address: ${temp_address}"
-echo "[${coin}] Temp privkey: ${temp_privkey}"
-
-echo "[${coin}] Unlocking all UTXOs"
-./unlockutxos.sh ${coin}
-echo "[${coin}] UTXOs unlocked"
-
-echo "[${coin}] Sending entire balance to the temp adress"
-
 get_balance
-#echo "${cli} sendtoaddress $temp_address $BALANCE _ _ true"
-do_send
+if (( $(echo "$BALANCE > 0" |bc -l) )); then
+    echo "[${coin}] Generating temp address"
+    temp_address=$(${cli} getnewaddress)
+    temp_privkey=$(${cli} dumpprivkey ${temp_address})
+    echo "[${coin}] Temp address: ${temp_address}"
+    echo "[${coin}] Temp privkey: ${temp_privkey}"
 
-while [ "$ERRORLEVEL" -ne "0" ]
-do
-    if [[ $RESULT =~ "Transaction too large" ]]; then
-        BALANCE=$(printf %f $(bc -l <<< "scale=8;$BALANCE*0.1"))
-        echo "TX to large. Now trying to send ten 10% chunks of $BALANCE"
- #       echo "${cli} sendtoaddress $address $BALANCE _ _ true"
-        counter=1
-        while [ $counter -le 10 ]
-        do
+    echo "[${coin}] Unlocking all UTXOs"
+    ./unlockutxos.sh ${coin}
+    echo "[${coin}] UTXOs unlocked"
+
+    echo "[${coin}] Sending entire balance to the temp adress"
+    echo $BALANCE
+    do_send
+
+    while [ "$ERRORLEVEL" -ne "0" ]
+    do
+        if [[ $RESULT =~ "Transaction too large" ]]; then
+            BALANCE=$(printf %f $(bc -l <<< "scale=8;$BALANCE*0.1"))
+            echo "TX to large. Now trying to send ten 10% chunks of $BALANCE"
+            counter=1
+            while [ $counter -le 10 ]
+            do
+                do_send
+                echo "txid: $RESULT"
+                ((counter++))
+            done
+            echo "Sending whole balance again..."
+            sleep 3
+            get_balance
             do_send
-            echo "txid: $RESULT"
-            ((counter++))
-        done
-        echo "Sending whole balance again..."
-        sleep 3
-        get_balance
- #       echo "${cli} sendtoaddress $temp_address $BALANCE _ _ true"
-        do_send
-    else
-        echo "ERROR: $RESULT"
-        exit
-    fi
-done
-echo "txid: $RESULT"
+        else
+            echo "ERROR: $RESULT"
+            exit
+        fi
+    done
+    echo "txid: $RESULT"
 
-echo "[${coin}] Waiting for confirmation of sent funds"
-waitforconfirm ${RESULT}
-echo "[${coin}] Sent funds confirmed"
+    echo "[${coin}] Waiting for confirmation of sent funds"
+    waitforconfirm ${RESULT}
+    echo "[${coin}] Sent funds confirmed"
+fi
 
 echo "[${coin}] Stopping the deamon"
 ${cli} stop
@@ -143,19 +145,21 @@ while [[ ${started} -eq 0 ]]; do
     fi
 done
 
-echo "[${coin}] Importing the temp privkey and rescanning for funds"
-${cli} importprivkey ${temp_privkey}
-
 echo "[${coin}] Importing the main privkey but without rescanning"
 ${cli} importprivkey ${privkey} "" false
 
-echo "[${coin}] Sending entire balance back to main address"
-txid=$(${cli} sendtoaddress ${address} $(${cli} getbalance) "" "" true)
-echo "[${coin}] Balance returned TXID: ${txid}"
+if (( $(echo "$BALANCE > 0" |bc -l) )); then
+    echo "[${coin}] Importing the temp privkey and rescanning for funds"
+    ${cli} importprivkey ${temp_privkey}
 
-echo "[${coin}] Waiting for confirmation of returned funds"
-waitforconfirm ${txid}
-echo "[${coin}] Returned funds confirmed"
+    echo "[${coin}] Sending entire balance back to main address"
+    txid=$(${cli} sendtoaddress ${address} $(${cli} getbalance) "" "" true)
+    echo "[${coin}] Balance returned TXID: ${txid}"
+
+    echo "[${coin}] Waiting for confirmation of returned funds"
+    waitforconfirm ${txid}
+    echo "[${coin}] Returned funds confirmed"
+fi
 
 echo "[${coin}] Running UTXO splitter"
 /home/eclips/tools/acsplit ${coin} 30 > /dev/null 2>&1 &
