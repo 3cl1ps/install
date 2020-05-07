@@ -46,7 +46,7 @@ waitforconfirm () {
 
 function do_send()
 {
-    RESULT=$(${cli} sendtoaddress $temp_address $BALANCE "" "" true 2>&1)
+    RESULT=$(${cli} sendtoaddress $address $BALANCE "" "" true 2>&1)
     ERRORLEVEL=$?
 }
 
@@ -69,22 +69,16 @@ privkey=$(${cli} dumpprivkey ${address})
 if [ "$?" -ne "0" ]; then
     exit
 fi
-echo "[${coin}] Main address: ${address}"
-echo "[${coin}] Main privkey: ${privkey}"
 
 get_balance
 if (( $(echo "$BALANCE > 0" |bc -l) )); then
-    echo "[${coin}] Generating temp address"
-    temp_address=$(${cli} getnewaddress)
-    temp_privkey=$(${cli} dumpprivkey ${temp_address})
-    echo "[${coin}] Temp address: ${temp_address}"
-    echo "[${coin}] Temp privkey: ${temp_privkey}"
-
     echo "[${coin}] Unlocking all UTXOs"
     ./unlockutxos.sh ${coin}
-    echo "[${coin}] UTXOs unlocked"
-
-    echo "[${coin}] Sending entire balance to the temp adress"
+    
+    #disable generate to avoid daemon crash during multiple "error adding notary vin" messages
+    echo "[${coin}] Setgenerate false"
+    ${cli} setgenerate false
+    echo "[${coin}] Sending entire balance"
     do_send
 
     while [ "$ERRORLEVEL" -ne "0" ]
@@ -112,7 +106,9 @@ if (( $(echo "$BALANCE > 0" |bc -l) )); then
 
     echo "[${coin}] Waiting for confirmation of sent funds"
     waitforconfirm ${RESULT}
-    echo "[${coin}] Sent funds confirmed"
+    blockhash=$(${cli} gettransaction $RESULT | jq -r .blockhash)
+    height=$(${cli} getblock $blockhash | jq .height)
+    echo "[${coin}] Sent funds confirmed, height : $height"
 fi
 
 echo "[${coin}] Stopping the deamon"
@@ -128,7 +124,7 @@ while [[ ${stopped} -eq 0 ]]; do
     fi
 done
 
-echo "[${coin}] Backing up and removing wallet file"
+echo "[${coin}] Removing wallet file"
 rm "${wallet_file}"
 
 echo "[${coin}] Restarting the daemon"
@@ -145,20 +141,7 @@ while [[ ${started} -eq 0 ]]; do
 done
 
 echo "[${coin}] Importing the main privkey but without rescanning"
-${cli} importprivkey ${privkey} "" false
-
-if (( $(echo "$BALANCE > 0" |bc -l) )); then
-    echo "[${coin}] Importing the temp privkey and rescanning for funds"
-    ${cli} importprivkey ${temp_privkey}
-
-    echo "[${coin}] Sending entire balance back to main address"
-    txid=$(${cli} sendtoaddress ${address} $(${cli} getbalance) "" "" true)
-    echo "[${coin}] Balance returned TXID: ${txid}"
-
-    echo "[${coin}] Waiting for confirmation of returned funds"
-    waitforconfirm ${txid}
-    echo "[${coin}] Returned funds confirmed"
-fi
+${cli} importprivkey ${privkey} "" true $height
 
 echo "[${coin}] Running UTXO splitter"
 /home/eclips/tools/acsplit ${coin} 30 > /dev/null 2>&1 &
