@@ -41,7 +41,7 @@ function do_send()
 function get_balance()
 {
     #echo $komodo_cli $asset getbalance
-    BALANCE=$(${cli} getbalance 2>/dev/null)
+    BALANCE=$(${cli} getbalance "" 2>/dev/null)
     ERRORLEVEL=$?
     if [ "$ERRORLEVEL" -eq "0" ] && [ "$BALANCE" != "0.00000000" ]; then
         echo -e "(${GREEN}$coin${RESET}) $BALANCE"
