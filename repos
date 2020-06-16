@@ -7,7 +7,7 @@ declare -A repos=(
 [EMC2]="/home/eclips/einsteinium origin/master master"
 [GIN]="/home/eclips/gincoin origin/master master"
 [VRSC]="/home/eclips/VerusCoin origin/master master"
-[HUSH3]="/home/eclips/hush3 origin/master master"
+[HUSH3]="/home/eclips/hush3 origin/dev dev"
 [AYA]="/home/eclips/AYAv2 origin/master master"
 [MCL]="/home/eclips/Marmara-v.1.0 origin/master master"
 )
