@@ -2,12 +2,12 @@
 declare -A repos=(
 [KMD]="/home/eclips/komodo origin/master master"
 [dPoW]="/home/eclips/dPoW origin/master master"
-[CHIPS]="/home/eclips/chips3 origin/dev dev"
+[CHIPS]="/home/eclips/chips3 origin/master master"
 [GAME]="/home/eclips/game origin/master master"
 [EMC2]="/home/eclips/einsteinium origin/master master"
 [GIN]="/home/eclips/gincoin origin/master master"
 [VRSC]="/home/eclips/VerusCoin origin/master master"
-[HUSH3]="/home/eclips/hush3 origin/dev dev"
+[HUSH3]="/home/eclips/hush3 origin/master master"
 [AYA]="/home/eclips/AYAv2 origin/master master"
 [MCL]="/home/eclips/Marmara-v.1.0 origin/master master"
 )
