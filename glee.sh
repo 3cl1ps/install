@@ -38,18 +38,18 @@ buildGleecBTC () {
 
 cd ~
 mkdir .gleecbtc
-rm ~/.gleebtc/gleebtc.conf
-echo "server=1" >> ~/.gleebtc/gleebtc.conf
-echo "daemon=1" >> ~/.gleebtc/gleebtc.conf
-echo "txindex=1" >> ~/.gleebtc/gleebtc.conf
-echo "rpcuser=user" >> ~/.gleebtc/gleebtc.conf
-echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.gleebtc/gleebtc.conf
-echo "addnode=159.69.23.29" >> ~/.gleebtc/gleebtc.conf
-echo "bind=127.0.0.1" >> ~/.gleebtc/gleebtc.conf
-echo "rpcbind=127.0.0.1" >> ~/.gleebtc/gleebtc.conf
-echo "rpcallowip=127.0.0.1" >> ~/.gleebtc/gleebtc.conf
-echo "changeaddress=" >> ~/.gleebtc/gleebtc.conf
-chmod 0600 ~/.gleebtc/gleebtc.conf
+rm ~/.gleecbtc/gleecbtc.conf
+echo "server=1" >> ~/.gleecbtc/gleecbtc.conf
+echo "daemon=1" >> ~/.gleecbtc/gleecbtc.conf
+echo "txindex=1" >> ~/.gleecbtc/gleecbtc.conf
+echo "rpcuser=user" >> ~/.gleecbtc/gleecbtc.conf
+echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.gleecbtc/gleecbtc.conf
+echo "addnode=159.69.23.29" >> ~/.gleecbtc/gleecbtc.conf
+echo "bind=127.0.0.1" >> ~/.gleecbtc/gleecbtc.conf
+echo "rpcbind=127.0.0.1" >> ~/.gleecbtc/gleecbtc.conf
+echo "rpcallowip=127.0.0.1" >> ~/.gleecbtc/gleecbtc.conf
+echo "changeaddress=" >> ~/.gleecbtc/gleecbtc.conf
+chmod 0600 ~/.gleecbtc/gleecbtc.conf
 
 berkeleydb
 buildGleecBTC
