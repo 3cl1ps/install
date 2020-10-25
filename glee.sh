@@ -36,8 +36,7 @@ buildGleecBTC () {
     make -j$(nproc)
 }
 
-cd ~
-mkdir .gleecbtc
+mkdir ~/.gleecbtc
 rm ~/.gleecbtc/gleecbtc.conf
 echo "server=1" >> ~/.gleecbtc/gleecbtc.conf
 echo "daemon=1" >> ~/.gleecbtc/gleecbtc.conf
@@ -51,6 +50,7 @@ echo "rpcallowip=127.0.0.1" >> ~/.gleecbtc/gleecbtc.conf
 echo "changeaddress=" >> ~/.gleecbtc/gleecbtc.conf
 chmod 0600 ~/.gleecbtc/gleecbtc.conf
 
+cd ~/GleecBTC-FullNode-Win-Mac-Linux
 berkeleydb
 buildGleecBTC
 echo "Done building GleecBTC!"
